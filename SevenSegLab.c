@@ -8,6 +8,7 @@
 #include "../HAL/BCDSevenSeg/BCDSevenSeg.h"
 #include <AVR/delay.h>
 #include "../LIB/Bit_Math.h"
+
 void SevenSegments (void)
 {
 	BCDSevenSegment_Initialization();
