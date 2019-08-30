@@ -1,0 +1,66 @@
+
+#include "../MCAL/DIO/DIO.h"
+#include "../HAL/LCD/LCD.h"
+#include <util/delay.h>
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+void LCD_ArabicName(void){
+	DIO_SetPortDirection(PORTA,DIO_Output);
+	DIO_SetPortDirection(PORTB,DIO_Output);
+
+	LCD_Initialize();
+
+	uint8 FirstLetter[8]={0x00, 0x01, 0x01, 0x01, 0x02, 0x04, 0x08, 0x10};
+	uint8 SecondLetter[8]={0x00, 0x00, 0x01, 0x01, 0x1F, 0x00, 0x0A, 0x00};
+	uint8 ThirdLetter[8]={0x00, 0x00, 0x00, 0x0E, 0x1B, 0x1A, 0x16, 0x10};
+	LCD_StoreCustomChr(FirstLetter,0);
+	LCD_StoreCustomChr(SecondLetter,1);
+	LCD_StoreCustomChr(ThirdLetter,2);
+
+	LCD_DisplayCustomChr(0,0,9);
+	LCD_DisplayCustomChr(1,0,8);
+	LCD_DisplayCustomChr(2,0,7);
+
+
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+void LCD_LabArabicNameZigzag(void){
+
+	DIO_SetPortDirection(PORTA,DIO_Output);
+	DIO_SetPortDirection(PORTB,DIO_Output);
+
+	LCD_Initialize();
+
+	uint8 FirstLetter[8]={0x00, 0x01, 0x01, 0x01, 0x02, 0x04, 0x08, 0x10};
+	uint8 SecondLetter[8]={0x00, 0x00, 0x01, 0x01, 0x1F, 0x00, 0x0A, 0x00};
+	uint8 ThirdLetter[8]={0x00, 0x00, 0x00, 0x0E, 0x1B, 0x1A, 0x16, 0x10};
+	LCD_StoreCustomChr(FirstLetter,0);
+	LCD_StoreCustomChr(SecondLetter,1);
+	LCD_StoreCustomChr(ThirdLetter,2);
+
+	LCD_DisplayCustomChr(0,0,15);
+	LCD_DisplayCustomChr(1,0,14);
+	LCD_DisplayCustomChr(2,0,13);
+	_delay_ms(1000);
+	LCD_WriteCmd(0x01);
+	LCD_DisplayCustomChr(0,1,12);
+	LCD_DisplayCustomChr(1,1,11);
+	LCD_DisplayCustomChr(2,1,10);
+	_delay_ms(1000);
+	LCD_WriteCmd(0x01);
+	LCD_DisplayCustomChr(0,0,9);
+	LCD_DisplayCustomChr(1,0,8);
+	LCD_DisplayCustomChr(2,0,7);
+	_delay_ms(1000);
+	LCD_WriteCmd(0x01);
+	LCD_DisplayCustomChr(0,1,6);
+	LCD_DisplayCustomChr(1,1,5);
+	LCD_DisplayCustomChr(2,1,4);
+
+
+
+}
+
